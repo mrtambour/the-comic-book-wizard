@@ -1,4 +1,4 @@
-the-comic-book-wizard
+The Comic Book Wizard
 =====================
 The comic book wizard allows you to select a directory containing images or any files in the folder. It then lists them along with the total size of all the files selected. On the right side you can preview each image by clicking on it in the list or double clicking to open the actual file. If you want to remove a file select it in the list and click delete. 
 
