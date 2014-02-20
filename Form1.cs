@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.IO.Compression;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 
 
@@ -21,21 +22,18 @@ namespace thecomicbookwizard
     public partial class Form1 : Form
     {
 
-
-        String Folder_File_Location = "";
-        String Folder_Save_Location = "";
-
         public Form1()
         {
             InitializeComponent();
-            
-
         }
 
+        String Folder_File_Location = "";
+        String Folder_Save_Location = "";
+        
+        
         private void btn_folderselect_Click(object sender, EventArgs e)
         {
-            ulong total_size = 0;
-            
+            ulong total_size = 0;            
 
             fldr_browser_selectfolder.ShowDialog();
             Folder_File_Location = fldr_browser_selectfolder.SelectedPath.ToString();
@@ -45,11 +43,7 @@ namespace thecomicbookwizard
                 return;
             }
 
-            lnk_folderloc.Text = Folder_File_Location;
-
-          
-
-            
+            lnk_folderloc.Text = Folder_File_Location;          
             listBox1.Items.Clear();
             int search = 0;
             DirectoryInfo di = new DirectoryInfo(Folder_File_Location);
@@ -63,10 +57,9 @@ namespace thecomicbookwizard
             }
 
             foreach(FileInfo f in all_files)
-                total_size += (ulong)f.Length;
+                total_size /= (total_size += (ulong)f.Length);
 
-            total_size = total_size/1024;
-            files_size_total.Text = (total_size.ToString());
+            files_size_total.Text = (total_size.ToString() + " KB");
             
         }
 
@@ -107,63 +100,97 @@ namespace thecomicbookwizard
 
         private void btn_compress_start_Click(object sender, EventArgs e)
         { 
-            String startPath = @Folder_File_Location;
-            String[] file_extension = { "", ".zip", ".cbz" };
-            
+           
+            string[] file_extension = { "", ".zip", ".cbz" };
+            string current_directory = Environment.CurrentDirectory.ToString();
+
+            prgrs_bar.Value = 10;
+            FastZip fastzip = new FastZip();
+            bool recurse_files = true;
+            string filter = null;
+            prgrs_bar.Value = 25;
+
             //failsafe default
             if (!chk_box_cbz.Checked & !chk_box_zip.Checked)
             {
                 chk_box_zip.Checked = true;
-                String zipPath = @Folder_Save_Location + textBox1.Text.ToString() + file_extension[1];
-                ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Optimal, false);                
-                
-            }
-            //save as cbz
-            if (chk_box_cbz.Checked & !chk_box_zip.Checked)
-            {
-                
-                String zipPath = @Folder_Save_Location + textBox1.Text.ToString() + file_extension[2];
-               
-                ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Optimal, false);
 
+                if (File.Exists(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                if (File.Exists(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                prgrs_bar.Value = 50;
+                fastzip.CreateZip(textBox1.Text.ToString() + file_extension[1], @Folder_File_Location, recurse_files, filter);
+                
+
+                File.Move((current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]), (Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]));
+                prgrs_bar.Value = 100;
             }
 
-            //save as zip
             if (!chk_box_cbz.Checked & chk_box_zip.Checked)
             {
                 
-                String zipPath = @Folder_Save_Location + textBox1.Text.ToString() + file_extension[1];
-                ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Optimal, false);
 
+                if (File.Exists(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                if (File.Exists(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                prgrs_bar.Value = 50;
+                fastzip.CreateZip(textBox1.Text.ToString() + file_extension[1], @Folder_File_Location, recurse_files, filter);
+                
+
+                File.Move((current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]), (Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]));
+                prgrs_bar.Value = 100;
             }
 
-            
-            try
+            if (chk_box_cbz.Checked & !chk_box_zip.Checked)
             {
-                if (chk_box_cbz.Checked & chk_box_zip.Checked)
-                {
 
-                    String zipPath = @Folder_Save_Location + textBox1.Text.ToString() + file_extension[1];
-                    ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Optimal, false);
 
-                    zipPath = @Folder_Save_Location + textBox1.Text.ToString() + file_extension[2];
-                    ZipFile.CreateFromDirectory(startPath, zipPath, CompressionLevel.Optimal, false);
-                }
+                if (File.Exists(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]))
+                    File.Delete(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]);
+
+                if (File.Exists(current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]))
+                    File.Delete(current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]);
+                
+                prgrs_bar.Value = 50;
+                fastzip.CreateZip(textBox1.Text.ToString() + file_extension[2], @Folder_File_Location, recurse_files, filter);
+                
+
+                File.Move((current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]), (Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]));
+                prgrs_bar.Value = 100;
             }
 
-            catch (OutOfMemoryException)
+            if (chk_box_cbz.Checked & chk_box_zip.Checked)
             {
-                MessageBox.Show("You have too little memory to complete the operation");
-                return;
+
+
+                if (File.Exists(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                if (File.Exists(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]))
+                    File.Delete(current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]);
+
+                if (File.Exists(current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]))
+                    File.Delete(current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]);
+
+                if (File.Exists(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]))
+                    File.Delete(Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]);
+
+                prgrs_bar.Value = 50;
+                fastzip.CreateZip(textBox1.Text.ToString() + file_extension[1], @Folder_File_Location, recurse_files, filter);
+                fastzip.CreateZip(textBox1.Text.ToString() + file_extension[2], @Folder_File_Location, recurse_files, filter);
+                
+                prgrs_bar.Value = 75;
+                File.Move((current_directory + "\\" + textBox1.Text.ToString() + file_extension[1]), (Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[1]));
+                File.Move((current_directory + "\\" + textBox1.Text.ToString() + file_extension[2]), (Folder_Save_Location + "\\" + textBox1.Text.ToString() + file_extension[2]));
+                prgrs_bar.Value = 100;
             }
 
-            catch 
-            {
-                MessageBox.Show("General Error: You have either run out of Hard Drive Space or there is a compression problem");
-                return;
-            }
-
-         
         }
 
         private void btn_list_delete_Click(object sender, EventArgs e)
@@ -251,7 +278,7 @@ namespace thecomicbookwizard
         public Bitmap MyImage;
         public void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            //If the file cant be assigned to test it creates and error that is caught and prevented (shortcut to checking wethere each item clicked is an image)
+            //If the file cant be assigned to test it creates and error that is caught and prevented (shortcut to checking wether each item clicked is an image)
                 try
                 {
                     Image test = Image.FromFile(listBox1.SelectedItem.ToString());
@@ -271,22 +298,7 @@ namespace thecomicbookwizard
                 MyImage = new Bitmap(newImage);
                 pictureBox1.ClientSize = new Size(pictureBox1.Size.Width, pictureBox1.Size.Height);
                 pictureBox1.Image = (newImage);
-                
-            
-        }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -304,25 +316,6 @@ namespace thecomicbookwizard
             }
             
         }
-
-        private void linkLabel1_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://rubengramos.deviantart.com/art/Human-Wizard-305871576");
-        }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://creativecommons.org/licenses/by-nc-nd/3.0/");
-        }
-
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://comicbookwizard.codeplex.com/");            
-        }
+                
     }
 }

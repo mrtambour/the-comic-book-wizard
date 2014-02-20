@@ -1,0 +1,57 @@
+--The Comic Book Wizard *Changelog*
+
+
+-> v0.2.0 (2/19/14)
+
+- removed netframework compression class 
+
+- implemented SharpZipLib library
+
+- lowered netframework requirements to 4.0 so program can now run on Windows XP and up
+
+- program now uses its root directory to store files temporarily
+
+- program now checks the save to directory and its root directory for duplicate files before saving and deletes duplicates
+
+- fixed bug that caused crash when saving to location with same file name
+
+- fixed bug that caused save directories name to get concatenated to the saved archives
+
+- fixed bug that caused program to save to deskop always
+
+- added progress bar so user knows for sure when the program is done
+
+- cleaned up source code a bit
+
+- moved and resized interface slightly
+
+- gave program an icon
+
+
+
+
+
+
+
+-> Initital Pre-Alpha Release v0.1.0 (2/17/2014)
+
+- Requirements: *NetFramework 4.5 & x86 or 64 bit processor
+
+- Added feature to save to multiple formats when compressing
+
+- Added feature to preview selected images
+
+- Added feature to display total size of all images that are going to get compressed
+
+- Added feature to prevent user from typing invalid characters for file name
+
+- Added feature to allow direct opening of selected files by double clicking
+
+- Fixed bug that caused crash when memory is low
+
+- Fixed bug that caused crash when hard drive space is low
+
+- Fixed bug that caused crash when program would try to display selected items other than images
+
+
+

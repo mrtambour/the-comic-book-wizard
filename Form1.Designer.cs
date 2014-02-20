@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.fldr_browser_selectfolder = new System.Windows.Forms.FolderBrowserDialog();
             this.fldr_save_to = new System.Windows.Forms.FolderBrowserDialog();
@@ -48,11 +49,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.files_size_total = new System.Windows.Forms.Label();
+            this.prgrs_bar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -75,9 +76,9 @@
             // 
             // btn_folderselect
             // 
-            this.btn_folderselect.Location = new System.Drawing.Point(12, 568);
+            this.btn_folderselect.Location = new System.Drawing.Point(12, 293);
             this.btn_folderselect.Name = "btn_folderselect";
-            this.btn_folderselect.Size = new System.Drawing.Size(91, 23);
+            this.btn_folderselect.Size = new System.Drawing.Size(91, 31);
             this.btn_folderselect.TabIndex = 1;
             this.btn_folderselect.Text = "Select Folder";
             this.btn_folderselect.UseVisualStyleBackColor = true;
@@ -85,9 +86,9 @@
             // 
             // btn_saveto
             // 
-            this.btn_saveto.Location = new System.Drawing.Point(12, 597);
+            this.btn_saveto.Location = new System.Drawing.Point(12, 343);
             this.btn_saveto.Name = "btn_saveto";
-            this.btn_saveto.Size = new System.Drawing.Size(91, 23);
+            this.btn_saveto.Size = new System.Drawing.Size(91, 31);
             this.btn_saveto.TabIndex = 2;
             this.btn_saveto.Text = "Save To";
             this.btn_saveto.UseVisualStyleBackColor = true;
@@ -96,7 +97,7 @@
             // lnk_folderloc
             // 
             this.lnk_folderloc.AutoSize = true;
-            this.lnk_folderloc.Location = new System.Drawing.Point(126, 573);
+            this.lnk_folderloc.Location = new System.Drawing.Point(126, 302);
             this.lnk_folderloc.Name = "lnk_folderloc";
             this.lnk_folderloc.Size = new System.Drawing.Size(36, 13);
             this.lnk_folderloc.TabIndex = 3;
@@ -107,7 +108,7 @@
             // fldr_browser_saveto
             // 
             this.fldr_browser_saveto.AutoSize = true;
-            this.fldr_browser_saveto.Location = new System.Drawing.Point(126, 601);
+            this.fldr_browser_saveto.Location = new System.Drawing.Point(126, 351);
             this.fldr_browser_saveto.Name = "fldr_browser_saveto";
             this.fldr_browser_saveto.Size = new System.Drawing.Size(48, 13);
             this.fldr_browser_saveto.TabIndex = 4;
@@ -118,7 +119,7 @@
             // btn_compress_start
             // 
             this.btn_compress_start.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btn_compress_start.Location = new System.Drawing.Point(11, 626);
+            this.btn_compress_start.Location = new System.Drawing.Point(308, 601);
             this.btn_compress_start.Name = "btn_compress_start";
             this.btn_compress_start.Size = new System.Drawing.Size(92, 70);
             this.btn_compress_start.TabIndex = 5;
@@ -138,7 +139,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 340);
+            this.textBox1.Location = new System.Drawing.Point(12, 449);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(283, 20);
             this.textBox1.TabIndex = 7;
@@ -151,7 +152,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 321);
+            this.label1.Location = new System.Drawing.Point(13, 430);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 8;
@@ -160,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(93, 321);
+            this.label2.Location = new System.Drawing.Point(93, 430);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(202, 13);
             this.label2.TabIndex = 9;
@@ -169,7 +170,7 @@
             // chk_box_zip
             // 
             this.chk_box_zip.AutoSize = true;
-            this.chk_box_zip.Location = new System.Drawing.Point(13, 468);
+            this.chk_box_zip.Location = new System.Drawing.Point(13, 556);
             this.chk_box_zip.Name = "chk_box_zip";
             this.chk_box_zip.Size = new System.Drawing.Size(46, 17);
             this.chk_box_zip.TabIndex = 10;
@@ -179,7 +180,7 @@
             // chk_box_cbz
             // 
             this.chk_box_cbz.AutoSize = true;
-            this.chk_box_cbz.Location = new System.Drawing.Point(13, 491);
+            this.chk_box_cbz.Location = new System.Drawing.Point(13, 579);
             this.chk_box_cbz.Name = "chk_box_cbz";
             this.chk_box_cbz.Size = new System.Drawing.Size(50, 17);
             this.chk_box_cbz.TabIndex = 11;
@@ -190,7 +191,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 440);
+            this.label3.Location = new System.Drawing.Point(9, 528);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(247, 13);
             this.label3.TabIndex = 12;
@@ -213,7 +214,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(624, 634);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
             // tabControl1
@@ -240,7 +240,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.linkLabel1);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -249,18 +248,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(208, 334);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(193, 16);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Visit Website for news & updates";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked_1);
             // 
             // label6
             // 
@@ -278,9 +265,9 @@
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(179, 249);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(256, 22);
+            this.label5.Size = new System.Drawing.Size(248, 22);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Comic Book Wizard(Alpha)";
+            this.label5.Text = "Comic Book Wizard(0.2.0)";
             // 
             // label4
             // 
@@ -299,11 +286,20 @@
             this.files_size_total.Size = new System.Drawing.Size(0, 13);
             this.files_size_total.TabIndex = 17;
             // 
+            // prgrs_bar
+            // 
+            this.prgrs_bar.Location = new System.Drawing.Point(11, 677);
+            this.prgrs_bar.Name = "prgrs_bar";
+            this.prgrs_bar.Size = new System.Drawing.Size(389, 23);
+            this.prgrs_bar.Step = 100;
+            this.prgrs_bar.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 708);
+            this.Controls.Add(this.prgrs_bar);
             this.Controls.Add(this.files_size_total);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_list_delete);
@@ -321,8 +317,9 @@
             this.Controls.Add(this.btn_saveto);
             this.Controls.Add(this.btn_folderselect);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "The Comic Book Wizard *ALPHA*";
+            this.Text = "The Comic Book Wizard *v0.2.0*";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -360,7 +357,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ProgressBar prgrs_bar;
     }
 }
 
