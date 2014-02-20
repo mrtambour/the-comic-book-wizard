@@ -4,10 +4,10 @@ The comic book wizard allows you to select a directory containing images or any 
 
 After you are happy with the files in the list you then have the option of either compressing all the files that are listed into a ZIP or CBZ and compress and save them to a directory of your choice. You can also leave both check boxes checked and it will compress and save both a ZIP and a CBZ. Future updates will allow opening CBR & RAR and various other features.
 
-Requirements:
--> Windows Xp and up
--> NetFramework 4.0
--> x86(32 bit) or 64 bit processor
+Requirements: -
+Windows Xp and up -
+NetFramework 4.0 -
+x86(32 bit) or 64 bit processor -
 
 
 
