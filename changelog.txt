@@ -19,7 +19,7 @@
 
 - fixed bug that caused program to save to deskop always
 
-- added progress bar so user knows for sure when the program is done
+- added progress bar so user knows when the program is done 
 
 - cleaned up source code a bit
 

@@ -16,3 +16,4 @@ obj/Release/thecomicbookwizard.csproj.FileListAbsolute.txt
 bin/Release/thecomicbookwizard.exe.config
 bin/Release/thecomicbookwizard.vshost.exe.config
 bin/Release/thecomicbookwizard.vshost.exe.manifest
+/.project
