@@ -1,6 +1,24 @@
 --The Comic Book Wizard *Changelog*
 
+-> v0.3.0 (2/23/14)
 
+- lowered netframework requirements to 4.0 client profile and up so that if a person doesnt have netframework 4.0 they can downloaded the client profile version  
+  which is somewhat smaller
+
+- split the iamge preview from the the left side
+
+- added a reset preview button so that after the preview window is resized or moved it can be reset to its starting position and size
+
+- the image preview can now also play .gif images
+
+- fixed bug that broke the calculation of the total size of files to be compressed 
+
+- removed the clear list button
+
+- the list is now filtered so that archives dont show up on the list, this is in preparation for the
+  integrated archive manager that is going to be implemented
+
+- 
 -> v0.2.0 (2/19/14)
 
 - removed netframework compression class 

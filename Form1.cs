@@ -25,12 +25,15 @@ namespace thecomicbookwizard
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         String Folder_File_Location = "";
         String Folder_Save_Location = "";
+        imageview loaded_image_window2 = new imageview();
         
         
+
         private void btn_folderselect_Click(object sender, EventArgs e)
         {
             ulong total_size = 0;            
@@ -48,17 +51,28 @@ namespace thecomicbookwizard
             int search = 0;
             DirectoryInfo di = new DirectoryInfo(Folder_File_Location);
             string[] files = Directory.GetFiles(@Folder_File_Location);
+
+            loaded_image_window2.image_windows_1_list = Directory.GetFiles(@Folder_File_Location);
+            
+
             FileInfo[] all_files = di.GetFiles();
 
             foreach (string dir in files)
             {
+                if (files[search].ToString().EndsWith(".zip") | files[search].ToString().EndsWith(".rar"))
+                {
+                    ++search;
+                    continue;
+                }
+
                 listBox1.Items.Add(files[search]);
                 search++;
             }
 
             foreach(FileInfo f in all_files)
-                total_size /= (total_size += (ulong)f.Length);
+                total_size += (ulong)f.Length;
 
+            total_size += (total_size / 1024);
             files_size_total.Text = (total_size.ToString() + " KB");
             
         }
@@ -207,8 +221,7 @@ namespace thecomicbookwizard
                 return;
             }
 
-            pictureBox1.Dispose();
-            pictureBox1.Image.Dispose();
+            
             MyImage.Dispose();
             File.Delete(selected_file_list);
             listBox1.Items.Remove(listBox1.SelectedItem);
@@ -224,7 +237,8 @@ namespace thecomicbookwizard
         
         private void Form1_Load(object sender, EventArgs e)
         {
-                      
+            loaded_image_window2.Show();
+            loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
             
         }
 
@@ -271,14 +285,15 @@ namespace thecomicbookwizard
         private void btn_clr_list_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            pictureBox1.Dispose();
+            
         }
 
         
         public Bitmap MyImage;
+        public Bitmap window2_image;
         public void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            //If the file cant be assigned to test it creates and error that is caught and prevented (shortcut to checking wether each item clicked is an image)
+            //If the file cant be assigned to test it creates and error that is caught and prevented (shortcut to checking wether each item clicked is an image, more specific error later on)
                 try
                 {
                     Image test = Image.FromFile(listBox1.SelectedItem.ToString());
@@ -291,15 +306,11 @@ namespace thecomicbookwizard
                     return;
                 }
 
-                Image newImage = Image.FromFile(listBox1.SelectedItem.ToString());
-
+                Image image_copy = Image.FromFile(listBox1.SelectedItem.ToString());
+                window2_image = new Bitmap(image_copy);
+                //loaded_image_window2.pictureBox_image_viewer.Image = (window2_image);
+                loaded_image_window2.pictureBox_image_viewer.LoadAsync(listBox1.SelectedItem.ToString());
                 
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                MyImage = new Bitmap(newImage);
-                pictureBox1.ClientSize = new Size(pictureBox1.Size.Width, pictureBox1.Size.Height);
-                pictureBox1.Image = (newImage);
-
-
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -315,6 +326,37 @@ namespace thecomicbookwizard
                 return;
             }
             
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
+        }
+
+        private void btn_reset_window2_dimensions_Click(object sender, EventArgs e)
+        {
+            loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
+            if(loaded_image_window2.Size.Height != 681 | loaded_image_window2.Size.Width != 737 )
+            {
+                loaded_image_window2.Height = 681;
+                loaded_image_window2.Width = 737;
+ 
+            }
+        }
+
+        private void btn_about_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void link_about_website_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", @"https://sourceforge.net/projects/comicbookwizard/");
         }
                 
     }

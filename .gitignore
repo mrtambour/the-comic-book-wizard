@@ -17,3 +17,5 @@ bin/Release/thecomicbookwizard.exe.config
 bin/Release/thecomicbookwizard.vshost.exe.config
 bin/Release/thecomicbookwizard.vshost.exe.manifest
 /.project
+obj/Debug/thecomicbookwizard.imageview.resources
+obj/Release/thecomicbookwizard.imageview.resources
