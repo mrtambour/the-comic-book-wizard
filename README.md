@@ -1,18 +1,28 @@
 The Comic Book Wizard
 =====================
-The comic book wizard allows you to select a directory containing images or any files in the folder. It then lists them along with the total size of all the files selected. On the right side you can preview each image by clicking on it in the list or double clicking to open the actual file. If you want to remove a file select it in the list and click delete. 
+The comic book wizard allows you to compress a folder of images into different archives such as cbz and zip. It now also has an archive manager that allows you to select a folder of archives such as cbr, rar and zip archives and it will automatically convert them into cbz archives and save them where you want. 
 
-After you are happy with the files in the list you then have the option of either compressing all the files that are listed into a ZIP or CBZ and compress and save them to a directory of your choice. You can also leave both check boxes checked and it will compress and save both a ZIP and a CBZ. Future updates will allow opening CBR & RAR and various other features.
+Some Features:
+- preview each image to be included in the archive
+
+- automatically convert a folder full of archives such as cbr, rar and zip into cbz archives
+
+- manage the files going into your cbz archives before being compressed
+
+- compress files in a directory into either cbz or zip or even both
+
 
 Requirements: -
 Windows Xp and up -
 NetFramework 4.0 -
-x86(32 bit) or 64 bit processor -
+x86(32 bit) or 64 bit processor 
 
 
-To check up on what is being worked on and future features please check out the project here:
+To check up on the latest progress and current planned features please visit:
 
 https://www.pivotaltracker.com/s/projects/1025444
+
+
 
 
 
