@@ -1,11 +1,27 @@
 --The Comic Book Wizard *Changelog*
 
+-> v0.4.0 (3/2/13)
+
+- implemented library for handling the opening to rar and cbr archives
+
+- added option of allowing users to choose wether they want the preview window to dock
+
+- implemented the arhive manager tab
+
+- program can now convert cbr, rar and zip archives in a directory to cbz, conversion isnt that fast 
+  but i will see what i can do to speed it up.
+
+- added the option of disabling the preview window
+
+- preview window now stays docked at the same viewing level as the main application
+
+
 -> v0.3.0 (2/23/14)
 
 - lowered netframework requirements to 4.0 client profile and up so that if a person doesnt have netframework 4.0 they can downloaded the client profile version  
   which is somewhat smaller
 
-- split the iamge preview from the the left side
+- split the image preview from the the left side
 
 - added a reset preview button so that after the preview window is resized or moved it can be reset to its starting position and size
 

@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
-
+using NUnrar.Archive;
+using NUnrar.Reader;
 
 
 
@@ -30,6 +31,8 @@ namespace thecomicbookwizard
 
         String Folder_File_Location = "";
         String Folder_Save_Location = "";
+        string[] file_extension = { "", ".zip", ".cbz", ".rar", ".cbr" };
+        bool disable_preview = false;
         imageview loaded_image_window2 = new imageview();
         
         
@@ -115,7 +118,7 @@ namespace thecomicbookwizard
         private void btn_compress_start_Click(object sender, EventArgs e)
         { 
            
-            string[] file_extension = { "", ".zip", ".cbz" };
+            
             string current_directory = Environment.CurrentDirectory.ToString();
 
             prgrs_bar.Value = 10;
@@ -335,12 +338,22 @@ namespace thecomicbookwizard
 
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
+            if (disable_preview == true)
+                return; 
+            
+                
+
+            if (checkbox_disable_docking.Checked == true)
+                return;
+
             loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
+            loaded_image_window2.BringToFront();
         }
 
         private void btn_reset_window2_dimensions_Click(object sender, EventArgs e)
         {
             loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
+
             if(loaded_image_window2.Size.Height != 681 | loaded_image_window2.Size.Width != 737 )
             {
                 loaded_image_window2.Height = 681;
@@ -357,6 +370,154 @@ namespace thecomicbookwizard
         private void link_about_website_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", @"https://sourceforge.net/projects/comicbookwizard/");
+        }
+
+        private void btn_select_archive_directory_Click(object sender, EventArgs e)
+        {
+            string archive_location_directory = "";
+            folder_archive_directory_dialog.ShowDialog();
+            archive_location_directory = folder_archive_directory_dialog.SelectedPath.ToString();
+
+            string [] archive_files = Directory.GetFiles(@archive_location_directory);
+
+            int search = 0;
+            foreach(string dir in archive_files)
+            {
+                if (!(archive_files[search].EndsWith(".zip") | archive_files[search].EndsWith(".rar") | archive_files[search].EndsWith(".cbr")))
+                {
+                    search++;
+                    continue;
+                }
+                
+                listbox_archive_list.Items.Add(archive_files[search]);
+                search++;
+            }
+            
+        }
+
+        private void btn_archive_process_Click(object sender, EventArgs e)
+        {
+            string archive_location_directory = folder_archive_directory_dialog.SelectedPath.ToString();
+            string [] archive_files = Directory.GetFiles(@archive_location_directory);
+            var file_names = Directory.GetFiles(@archive_location_directory).Select(f => Path.GetFileName(f));
+            string[] prearchived_file_list = file_names.ToArray<string>();
+
+            string original_file_extension = "";
+             
+            
+            
+            int search = 0;
+            foreach (string dir in archive_files)
+            {
+                string archive_save_directory = "";
+                string program_root_folder = "";
+                string temporary_root_folder = "";
+                bool recurse = true;
+                original_file_extension = prearchived_file_list[search].ToString();
+                original_file_extension = original_file_extension.Substring(original_file_extension.Length - 4);
+                archive_save_directory = folder_archive_saveto_dialog.SelectedPath.ToString();
+
+                if (original_file_extension == ".rar" | original_file_extension == ".cbr")
+                {
+                    program_root_folder = Environment.CurrentDirectory.ToString();
+                    Directory.CreateDirectory(program_root_folder + search.ToString());
+                    temporary_root_folder = (program_root_folder + search.ToString());
+
+                    RarArchive.WriteToDirectory(archive_files[search], temporary_root_folder);
+
+                    FastZip archive = new FastZip();
+                    string zip_name = archive_files[search].Substring(0, archive_files[search].Length - 4);
+
+                    if (chkbox_cnvrt_to_cbz.Checked == true | chkbox_cnvrt_to_cbz.Checked == false)
+                    {
+                        if (chkbox_cnvrt_to_cbz.Checked == false)
+                            chkbox_cnvrt_to_cbz.Checked = true;
+
+                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
+
+                        if (File.Exists(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
+                            File.Delete(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+
+                        File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                    }
+
+                    Directory.Delete(temporary_root_folder, true);
+                }
+
+                if (original_file_extension == ".zip")
+                {
+                    FastZip archive = new FastZip();
+                    program_root_folder = Environment.CurrentDirectory.ToString();
+                    Directory.CreateDirectory(program_root_folder + search.ToString());
+                    temporary_root_folder = (program_root_folder + search.ToString());
+
+                    archive.ExtractZip(archive_files[search], temporary_root_folder, null);
+
+
+
+                    string zip_name = archive_files[search].Substring(0, archive_files[search].Length - 4);
+
+                    if (File.Exists(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
+                    {
+                        File.Delete(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                    }
+
+                    if (File.Exists(temporary_root_folder + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
+                    {
+                        File.Delete((temporary_root_folder + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"));
+                    }
+
+
+                    if (chk_box_cbz.Checked == true)
+                    {
+                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
+
+                        File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                    }
+
+                    else
+                    {
+                        chkbox_cnvrt_to_cbz.Checked = true;
+
+                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
+
+                        File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                        
+                        Directory.Delete(temporary_root_folder, true);
+                    }
+
+
+                }
+                search++;
+            }
+            
+        }
+
+        private void btn_save_archive_to_Click(object sender, EventArgs e)
+        {
+            string archive_save_directory = "";
+            folder_archive_saveto_dialog.ShowDialog();
+            archive_save_directory = folder_archive_saveto_dialog.SelectedPath.ToString();
+        }
+
+        private void chk_box_disable_preview_Click(object sender, EventArgs e)
+        {
+            if (chk_box_disable_preview.Checked == true)
+            {
+            disable_preview = true;
+            loaded_image_window2.show_preview = false;
+            loaded_image_window2.Hide();
+            }
+
+            if (chk_box_disable_preview.Checked == false)
+            {
+                disable_preview = false;
+                loaded_image_window2.show_preview = true;
+                loaded_image_window2.Show();
+                loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
+                loaded_image_window2.BringToFront();
+            }
+
         }
                 
     }

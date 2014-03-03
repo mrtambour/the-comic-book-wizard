@@ -53,7 +53,7 @@
             this.Name = "imageview";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "imageview";
+            this.Text = "Preview";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.imageview_FormClosing);
             this.Load += new System.EventHandler(this.imageview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_image_viewer)).EndInit();

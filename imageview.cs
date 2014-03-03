@@ -15,9 +15,10 @@ namespace thecomicbookwizard
         public imageview()
         {
             InitializeComponent();
-             
+            
         }
-        
+
+        public bool show_preview = true;
         public string[] image_windows_1_list;
 
         private void imageview_Load(object sender, EventArgs e)
@@ -27,8 +28,11 @@ namespace thecomicbookwizard
 
         private void imageview_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
+            
+                e.Cancel = true;
+            
         }
+            
 
         private void pictureBox_image_viewer_LoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
