@@ -10,19 +10,9 @@ NetFramework 4.0 -
 x86(32 bit) or 64 bit processor -
 
 
+To check up on what is being worked on and future features please check out the project here:
 
-
-Future Planned updates/features:
-*conversion of numerous formats to CBR, CBZ,ZIP
-*selection of cover image for CBR & CBZ compression
-*checking cover image to make sure its compatible with portable devices
-*handle RAR & CBR files (open only)
-*combine multiple CBZ files and combine them into a single CBZ file with files in order that user set
-*preview any output including contents of CBR, CBZ, RAR, ZIP archives
-*open archives within the program
-*manage a library of cbr and cbz files and read them within the program
-*optimization of the code & possible inclusion of C++ libraries to speed things up
-*possible port to other operating systems
+https://www.pivotaltracker.com/s/projects/1025444
 
 
 
