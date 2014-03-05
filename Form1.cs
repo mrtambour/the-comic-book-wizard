@@ -354,9 +354,9 @@ namespace thecomicbookwizard
         {
             loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
 
-            if(loaded_image_window2.Size.Height != 681 | loaded_image_window2.Size.Width != 737 )
+            if(loaded_image_window2.Size.Height != 685 | loaded_image_window2.Size.Width != 737 )
             {
-                loaded_image_window2.Height = 681;
+                loaded_image_window2.Height = 685;
                 loaded_image_window2.Width = 737;
  
             }
@@ -417,6 +417,9 @@ namespace thecomicbookwizard
                 original_file_extension = original_file_extension.Substring(original_file_extension.Length - 4);
                 archive_save_directory = folder_archive_saveto_dialog.SelectedPath.ToString();
 
+                if (chkbox_cnvrt_to_cbz.Checked != true)
+                      chkbox_cnvrt_to_cbz.Checked = true;
+
                 if (original_file_extension == ".rar" | original_file_extension == ".cbr")
                 {
                     program_root_folder = Environment.CurrentDirectory.ToString();
@@ -428,12 +431,7 @@ namespace thecomicbookwizard
                     FastZip archive = new FastZip();
                     string zip_name = archive_files[search].Substring(0, archive_files[search].Length - 4);
 
-                    if (chkbox_cnvrt_to_cbz.Checked == true | chkbox_cnvrt_to_cbz.Checked == false)
-                    {
-                        if (chkbox_cnvrt_to_cbz.Checked == false)
-                            chkbox_cnvrt_to_cbz.Checked = true;
-
-                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
+                    archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
 
                         if (File.Exists(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
                             File.Delete(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
@@ -442,53 +440,15 @@ namespace thecomicbookwizard
                     }
 
                     Directory.Delete(temporary_root_folder, true);
-                }
+                
 
                 if (original_file_extension == ".zip")
                 {
-                    FastZip archive = new FastZip();
-                    program_root_folder = Environment.CurrentDirectory.ToString();
-                    Directory.CreateDirectory(program_root_folder + search.ToString());
-                    temporary_root_folder = (program_root_folder + search.ToString());
-
-                    archive.ExtractZip(archive_files[search], temporary_root_folder, null);
-
-
-
-                    string zip_name = archive_files[search].Substring(0, archive_files[search].Length - 4);
-
-                    if (File.Exists(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
-                    {
-                        File.Delete(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
-                    }
-
-                    if (File.Exists(temporary_root_folder + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"))
-                    {
-                        File.Delete((temporary_root_folder + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz"));
-                    }
-
-
-                    if (chk_box_cbz.Checked == true)
-                    {
-                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
-
-                        File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
-                    }
-
-                    else
-                    {
-                        chkbox_cnvrt_to_cbz.Checked = true;
-
-                        archive.CreateZip(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", temporary_root_folder, recurse, null);
-
-                        File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
-                        
-                        Directory.Delete(temporary_root_folder, true);
-                    }
-
-
+                    File.Copy(archive_files[search], archive_save_directory+ "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
                 }
+                
                 search++;
+        
             }
             
         }

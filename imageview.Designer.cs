@@ -38,7 +38,7 @@
             this.pictureBox_image_viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox_image_viewer.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_image_viewer.Name = "pictureBox_image_viewer";
-            this.pictureBox_image_viewer.Size = new System.Drawing.Size(721, 642);
+            this.pictureBox_image_viewer.Size = new System.Drawing.Size(721, 646);
             this.pictureBox_image_viewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_image_viewer.TabIndex = 0;
             this.pictureBox_image_viewer.TabStop = false;
@@ -48,7 +48,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 642);
+            this.ClientSize = new System.Drawing.Size(721, 646);
             this.Controls.Add(this.pictureBox_image_viewer);
             this.Name = "imageview";
             this.ShowIcon = false;

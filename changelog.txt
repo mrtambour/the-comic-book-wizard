@@ -1,6 +1,12 @@
 --The Comic Book Wizard *Changelog*
 
--> v0.4.0 (3/2/13)
+-> v0.4.1 (3/5/14)
+
+- fixed and improved conversion speed of zip archives to cbz, they should now be converted almost instantly and saved to the selected directory
+
+- fixed minor bug with reset preview button not resizing to correct dimensions
+
+-> v0.4.0 (3/2/14)
 
 - implemented library for handling the opening to rar and cbr archives
 

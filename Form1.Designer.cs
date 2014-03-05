@@ -330,6 +330,8 @@
             // chkbox_cnvrt_to_cbz
             // 
             this.chkbox_cnvrt_to_cbz.AutoSize = true;
+            this.chkbox_cnvrt_to_cbz.Checked = true;
+            this.chkbox_cnvrt_to_cbz.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkbox_cnvrt_to_cbz.Location = new System.Drawing.Point(8, 491);
             this.chkbox_cnvrt_to_cbz.Name = "chkbox_cnvrt_to_cbz";
             this.chkbox_cnvrt_to_cbz.Size = new System.Drawing.Size(50, 17);
@@ -417,9 +419,9 @@
             this.label5.Font = new System.Drawing.Font("Buxton Sketch", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(38, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(311, 29);
+            this.label5.Size = new System.Drawing.Size(305, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "The Comic Book Wizard v0.4.0";
+            this.label5.Text = "The Comic Book Wizard v0.4.1";
             // 
             // Form1
             // 
@@ -431,7 +433,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "The Comic Book Wizard *v0.4.0*";
+            this.Text = "The Comic Book Wizard *v0.4.1*";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.tabControl1.ResumeLayout(false);
