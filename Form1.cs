@@ -32,6 +32,8 @@ namespace thecomicbookwizard
         String Folder_File_Location = "";
         String Folder_Save_Location = "";
         string[] file_extension = { "", ".zip", ".cbz", ".rar", ".cbr" };
+        string archive_location_directory = "";
+        string archive_save_directory = "";
         bool disable_preview = false;
         imageview loaded_image_window2 = new imageview();
         
@@ -374,10 +376,11 @@ namespace thecomicbookwizard
 
         private void btn_select_archive_directory_Click(object sender, EventArgs e)
         {
-            string archive_location_directory = "";
+            listbox_archive_list.Items.Clear();
+            
             folder_archive_directory_dialog.ShowDialog();
             archive_location_directory = folder_archive_directory_dialog.SelectedPath.ToString();
-
+            lnk_archive_directory.Text = archive_location_directory;
             string [] archive_files = Directory.GetFiles(@archive_location_directory);
 
             int search = 0;
@@ -397,16 +400,18 @@ namespace thecomicbookwizard
 
         private void btn_archive_process_Click(object sender, EventArgs e)
         {
+            archive_conversion_progress.Value = 5;
             string archive_location_directory = folder_archive_directory_dialog.SelectedPath.ToString();
             string [] archive_files = Directory.GetFiles(@archive_location_directory);
             var file_names = Directory.GetFiles(@archive_location_directory).Select(f => Path.GetFileName(f));
             string[] prearchived_file_list = file_names.ToArray<string>();
-
+            archive_conversion_progress.Value = 10;
             string original_file_extension = "";
-             
+            archive_conversion_progress.Value = 15; 
             
             
             int search = 0;
+            archive_conversion_progress.Value = 25;
             foreach (string dir in archive_files)
             {
                 string archive_save_directory = "";
@@ -427,7 +432,7 @@ namespace thecomicbookwizard
                     temporary_root_folder = (program_root_folder + search.ToString());
 
                     RarArchive.WriteToDirectory(archive_files[search], temporary_root_folder);
-
+                    MessageBox.Show(temporary_root_folder);
                     FastZip archive = new FastZip();
                     string zip_name = archive_files[search].Substring(0, archive_files[search].Length - 4);
 
@@ -437,27 +442,31 @@ namespace thecomicbookwizard
                             File.Delete(prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
 
                         File.Move(program_root_folder + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz", archive_save_directory + "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                        Directory.Delete(temporary_root_folder, true);
                     }
 
-                    Directory.Delete(temporary_root_folder, true);
+                
+                
                 
 
                 if (original_file_extension == ".zip")
                 {
                     File.Copy(archive_files[search], archive_save_directory+ "\\" + prearchived_file_list[search].Substring(0, prearchived_file_list[search].Length - 4) + ".cbz");
+                    
                 }
                 
                 search++;
         
             }
-            
+            archive_conversion_progress.Value = 100;
         }
 
         private void btn_save_archive_to_Click(object sender, EventArgs e)
         {
-            string archive_save_directory = "";
+            
             folder_archive_saveto_dialog.ShowDialog();
             archive_save_directory = folder_archive_saveto_dialog.SelectedPath.ToString();
+            lnk_save_archive_directory.Text = archive_save_directory;
         }
 
         private void chk_box_disable_preview_Click(object sender, EventArgs e)
@@ -478,6 +487,16 @@ namespace thecomicbookwizard
                 loaded_image_window2.BringToFront();
             }
 
+        }
+
+        private void lnk_archive_directory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", @archive_location_directory);
+        }
+
+        private void lnk_save_archive_directory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", @archive_save_directory);
         }
                 
     }
