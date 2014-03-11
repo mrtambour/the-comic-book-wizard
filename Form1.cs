@@ -380,6 +380,13 @@ namespace thecomicbookwizard
             
             folder_archive_directory_dialog.ShowDialog();
             archive_location_directory = folder_archive_directory_dialog.SelectedPath.ToString();
+
+            if (archive_location_directory == "")
+            {
+                lnk_archive_directory.Text = "Source Directory";
+                return;
+            }
+
             lnk_archive_directory.Text = archive_location_directory;
             string [] archive_files = Directory.GetFiles(@archive_location_directory);
 
@@ -466,6 +473,13 @@ namespace thecomicbookwizard
             
             folder_archive_saveto_dialog.ShowDialog();
             archive_save_directory = folder_archive_saveto_dialog.SelectedPath.ToString();
+
+            if (archive_save_directory == "")
+            {
+                lnk_save_archive_directory.Text = "Save Directory";
+                return;
+            }
+
             lnk_save_archive_directory.Text = archive_save_directory;
         }
 

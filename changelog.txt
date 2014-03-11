@@ -4,6 +4,8 @@
 
  - fixed a serious bug in the archive manager which caused it to lock up immediately and not function at all
 
+ - fixed minor bugs when not selecting folders after clicking on the buttons
+
  - added links to archive manager so people can click them and immediately go to source and save to directories
 
  - added progress bar so user knows exactly when the operation is done
