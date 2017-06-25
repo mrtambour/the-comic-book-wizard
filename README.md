@@ -18,10 +18,6 @@ NetFramework 4.0 -
 x86(32 bit) or 64 bit processor 
 
 
-To check up on the latest progress and current planned features please visit:
-
-https://www.pivotaltracker.com/s/projects/1025444
-
 
 
 
