@@ -17,6 +17,6 @@ At Least Windows XP
 Net Framework 4.0
 x86(32 bit) or 64 bit processor
 
-Note: The oldest Windows OS supported by this software is Windows XP, Microsoft lists Windows XP as compatible with Net Framework 4.0 which is the minimum version required to run this software.
+<strong>Note: The oldest Windows OS supported by this software is Windows XP, Microsoft lists Windows XP as compatible with Net Framework 4.0 which is the minimum version required to run this software.</strong>
 
 For more information about installing Net Framework 4.0 on Windows XP and Windows Server 2003 please check the following link https://docs.microsoft.com/en-us/dotnet/framework/install/on-windows-xp
