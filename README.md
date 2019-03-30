@@ -13,9 +13,9 @@ Some Features:
 
 
 Requirements:
-At Least Windows XP
-Net Framework 4.0
-x86(32 bit) or 64 bit processor
+* At Least Windows XP
+* Net Framework 4.0
+* x86(32 bit) or 64 bit processor
 
 <strong>Note: The oldest Windows OS supported by this software is Windows XP, Microsoft lists Windows XP as compatible with Net Framework 4.0 which is the minimum version required to run this software.</strong>
 
