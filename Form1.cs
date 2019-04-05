@@ -36,6 +36,8 @@ namespace thecomicbookwizard
         string archive_save_directory = "";
         bool disable_preview = false;
         imageview loaded_image_window2 = new imageview();
+        Form2 help_window = new Form2();
+        
         
         
 
@@ -245,7 +247,8 @@ namespace thecomicbookwizard
             loaded_image_window2.Show();
             loaded_image_window2.Location = new Point(this.Location.X + this.Width + 5, this.Location.Y);
             
-        }
+
+    }
 
         private void listBox1_DragEnter(object sender, DragEventArgs e)
         {
@@ -539,6 +542,21 @@ namespace thecomicbookwizard
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (help_window.Visible)
+            {
+                return;
+            }
+            
+            help_window.Show();
+        }
+
+        private void Chk_box_disable_preview_CheckedChanged(object sender, EventArgs e)
         {
 
         }
