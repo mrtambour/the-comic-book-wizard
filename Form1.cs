@@ -371,7 +371,7 @@ namespace thecomicbookwizard
 
         private void link_about_website_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", @"https://sourceforge.net/projects/comicbookwizard/");
+            System.Diagnostics.Process.Start("explorer.exe", @"https://github.com/mrtambour/the-comic-book-wizard");
         }
 
         private void btn_select_archive_directory_Click(object sender, EventArgs e)
@@ -512,6 +512,35 @@ namespace thecomicbookwizard
         {
             System.Diagnostics.Process.Start("explorer.exe", @archive_save_directory);
         }
-                
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", @"https://github.com/icsharpcode/SharpZipLib");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", @"https://www.nuget.org/packages/nunrar");
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

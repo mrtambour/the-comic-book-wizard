@@ -53,6 +53,9 @@
             this.chk_box_disable_preview = new System.Windows.Forms.CheckBox();
             this.checkbox_disable_docking = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lnk_save_archive_directory = new System.Windows.Forms.LinkLabel();
+            this.lnk_archive_directory = new System.Windows.Forms.LinkLabel();
+            this.archive_conversion_progress = new System.Windows.Forms.ProgressBar();
             this.lbl_cnvrt_to_txt = new System.Windows.Forms.Label();
             this.chkbox_cnvrt_to_cbz = new System.Windows.Forms.CheckBox();
             this.btn_save_archive_to = new System.Windows.Forms.Button();
@@ -60,14 +63,14 @@
             this.btn_select_archive_directory = new System.Windows.Forms.Button();
             this.listbox_archive_list = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.link_about_website = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.folder_archive_directory_dialog = new System.Windows.Forms.FolderBrowserDialog();
             this.folder_archive_saveto_dialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.archive_conversion_progress = new System.Windows.Forms.ProgressBar();
-            this.lnk_archive_directory = new System.Windows.Forms.LinkLabel();
-            this.lnk_save_archive_directory = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -253,11 +256,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(410, 699);
+            this.tabControl1.Size = new System.Drawing.Size(410, 648);
             this.tabControl1.TabIndex = 22;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.Controls.Add(this.chk_box_disable_preview);
             this.tabPage1.Controls.Add(this.checkbox_disable_docking);
             this.tabPage1.Controls.Add(this.btn_reset_window2_dimensions);
@@ -279,11 +283,11 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(402, 673);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(402, 622);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // chk_box_disable_preview
             // 
@@ -319,10 +323,39 @@
             this.tabPage3.Controls.Add(this.listbox_archive_list);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(402, 673);
+            this.tabPage3.Size = new System.Drawing.Size(402, 622);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Archive Manager";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lnk_save_archive_directory
+            // 
+            this.lnk_save_archive_directory.AutoSize = true;
+            this.lnk_save_archive_directory.Location = new System.Drawing.Point(125, 372);
+            this.lnk_save_archive_directory.Name = "lnk_save_archive_directory";
+            this.lnk_save_archive_directory.Size = new System.Drawing.Size(77, 13);
+            this.lnk_save_archive_directory.TabIndex = 8;
+            this.lnk_save_archive_directory.TabStop = true;
+            this.lnk_save_archive_directory.Text = "Save Directory";
+            this.lnk_save_archive_directory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_save_archive_directory_LinkClicked);
+            // 
+            // lnk_archive_directory
+            // 
+            this.lnk_archive_directory.AutoSize = true;
+            this.lnk_archive_directory.Location = new System.Drawing.Point(125, 308);
+            this.lnk_archive_directory.Name = "lnk_archive_directory";
+            this.lnk_archive_directory.Size = new System.Drawing.Size(86, 13);
+            this.lnk_archive_directory.TabIndex = 7;
+            this.lnk_archive_directory.TabStop = true;
+            this.lnk_archive_directory.Text = "Source Directory";
+            this.lnk_archive_directory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_archive_directory_LinkClicked);
+            // 
+            // archive_conversion_progress
+            // 
+            this.archive_conversion_progress.Location = new System.Drawing.Point(8, 585);
+            this.archive_conversion_progress.Name = "archive_conversion_progress";
+            this.archive_conversion_progress.Size = new System.Drawing.Size(383, 23);
+            this.archive_conversion_progress.TabIndex = 6;
             // 
             // lbl_cnvrt_to_txt
             // 
@@ -386,27 +419,64 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.linkLabel2);
+            this.tabPage2.Controls.Add(this.linkLabel1);
+            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.link_about_website);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(402, 673);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(402, 622);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(27, 245);
+            this.linkLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(41, 13);
+            this.linkLabel2.TabIndex = 5;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "NUnrar";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(27, 211);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(130, 13);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "ICSharpCode.SharpZipLib";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 183);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Libraries Used:";
             // 
             // link_about_website
             // 
             this.link_about_website.AutoSize = true;
             this.link_about_website.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.link_about_website.Location = new System.Drawing.Point(102, 101);
+            this.link_about_website.Location = new System.Drawing.Point(113, 103);
             this.link_about_website.Name = "link_about_website";
-            this.link_about_website.Size = new System.Drawing.Size(179, 16);
+            this.link_about_website.Size = new System.Drawing.Size(167, 16);
             this.link_about_website.TabIndex = 2;
             this.link_about_website.TabStop = true;
-            this.link_about_website.Text = "Comic Book Wizard Website";
+            this.link_about_website.Text = "Comic Book Wizard Github";
             this.link_about_website.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_about_website_LinkClicked);
             // 
             // label6
@@ -415,60 +485,36 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(43, 57);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 15);
+            this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 1;
-            this.label6.Text = "By: Martin Garcilazo";
+            this.label6.Text = "By: Martin G.";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Buxton Sketch", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(38, 24);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(24, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(312, 29);
+            this.label5.Size = new System.Drawing.Size(369, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "The Comic Book Wizard v0.4.2";
-            // 
-            // archive_conversion_progress
-            // 
-            this.archive_conversion_progress.Location = new System.Drawing.Point(8, 585);
-            this.archive_conversion_progress.Name = "archive_conversion_progress";
-            this.archive_conversion_progress.Size = new System.Drawing.Size(383, 23);
-            this.archive_conversion_progress.TabIndex = 6;
-            // 
-            // lnk_archive_directory
-            // 
-            this.lnk_archive_directory.AutoSize = true;
-            this.lnk_archive_directory.Location = new System.Drawing.Point(125, 308);
-            this.lnk_archive_directory.Name = "lnk_archive_directory";
-            this.lnk_archive_directory.Size = new System.Drawing.Size(86, 13);
-            this.lnk_archive_directory.TabIndex = 7;
-            this.lnk_archive_directory.TabStop = true;
-            this.lnk_archive_directory.Text = "Source Directory";
-            this.lnk_archive_directory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_archive_directory_LinkClicked);
-            // 
-            // lnk_save_archive_directory
-            // 
-            this.lnk_save_archive_directory.AutoSize = true;
-            this.lnk_save_archive_directory.Location = new System.Drawing.Point(125, 372);
-            this.lnk_save_archive_directory.Name = "lnk_save_archive_directory";
-            this.lnk_save_archive_directory.Size = new System.Drawing.Size(77, 13);
-            this.lnk_save_archive_directory.TabIndex = 8;
-            this.lnk_save_archive_directory.TabStop = true;
-            this.lnk_save_archive_directory.Text = "Save Directory";
-            this.lnk_save_archive_directory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_save_archive_directory_LinkClicked);
+            this.label5.Text = "The Comic Book Wizard v0.4.3";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 642);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(410, 650);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(430, 560);
             this.Name = "Form1";
-            this.Text = "The Comic Book Wizard *v0.4.2*";
+            this.Text = "The Comic Book Wizard *v0.4.3*";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.tabControl1.ResumeLayout(false);
@@ -499,7 +545,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label files_size_total;
-        private System.Windows.Forms.ProgressBar prgrs_bar;
         public System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btn_reset_window2_dimensions;
         private System.Windows.Forms.Label label9;
@@ -523,6 +568,10 @@
         private System.Windows.Forms.ProgressBar archive_conversion_progress;
         private System.Windows.Forms.LinkLabel lnk_save_archive_directory;
         private System.Windows.Forms.LinkLabel lnk_archive_directory;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.ProgressBar prgrs_bar;
     }
 }
 

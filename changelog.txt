@@ -1,5 +1,18 @@
 --The Comic Book Wizard *Changelog*
 
+-> v0.4.3 (03/29-2019)
+
+- Removed old unsupported installer
+- the software is portable for now just unzip the exe and the dll files into a folder
+
+- Fixed an old bug that would cause the bottom of the main window to be cut off
+
+- The progress bar is now visible as it should have been
+
+- Added links for the libraries used
+
+- Updated project link in the software
+
 -> v0.4.2 (3/10/14)
 
  - fixed a serious bug in the archive manager which caused it to lock up immediately and not function at all
