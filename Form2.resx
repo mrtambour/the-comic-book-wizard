@@ -117,6 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Main:
+
+1: Click the Select Folder button and select the folder that has the images you want to use
+
+2: Click Save To button and select folder where you want to save the new archive
+
+3: Enter a name for your new archive
+
+4: Select the archive format you want to generate by clicking the ZIP or CBZ checkbox, 
+one or the other can be selected or both at the same time
+
+5: Click compress to generate your new archive 
+
+--optionally go through the files in the box above and
+click delete to remove the images you dont want in the new archive</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Archiver:
+
+1: Click the Select Folder button and select the folder with all your archives
+ such as cbr, rar, zip
+
+2: Click the Save To button to select the folder where you want to save the
+new converted archives to
+
+3: Click process and your archives will be ready shortly</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

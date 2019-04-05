@@ -50,6 +50,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.chk_box_disable_preview = new System.Windows.Forms.CheckBox();
             this.checkbox_disable_docking = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -71,8 +73,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.folder_archive_directory_dialog = new System.Windows.Forms.FolderBrowserDialog();
             this.folder_archive_saveto_dialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -255,7 +255,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(7, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(410, 648);
@@ -292,6 +292,25 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(319, 201);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(321, 608);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = " Version 0.4.4";
             // 
             // chk_box_disable_preview
             // 
@@ -476,7 +495,7 @@
             // 
             this.link_about_website.AutoSize = true;
             this.link_about_website.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.link_about_website.Location = new System.Drawing.Point(110, 103);
+            this.link_about_website.Location = new System.Drawing.Point(118, 103);
             this.link_about_website.Name = "link_about_website";
             this.link_about_website.Size = new System.Drawing.Size(167, 16);
             this.link_about_website.TabIndex = 2;
@@ -499,31 +518,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 12);
+            this.label5.Location = new System.Drawing.Point(17, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(369, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "The Comic Book Wizard v0.4.3";
+            this.label5.Text = "The Comic Book Wizard v0.4.4";
             this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(321, 608);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = " Version 0.4.3";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(319, 201);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Help";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
@@ -531,7 +531,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(410, 650);
+            this.ClientSize = new System.Drawing.Size(420, 650);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
