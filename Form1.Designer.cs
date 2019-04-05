@@ -50,6 +50,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.chk_box_disable_preview = new System.Windows.Forms.CheckBox();
             this.checkbox_disable_docking = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -253,7 +255,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(7, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(410, 648);
@@ -262,6 +264,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.chk_box_disable_preview);
             this.tabPage1.Controls.Add(this.checkbox_disable_docking);
             this.tabPage1.Controls.Add(this.btn_reset_window2_dimensions);
@@ -283,27 +287,47 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(402, 622);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(319, 201);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(321, 608);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = " Version 0.4.4";
+            // 
             // chk_box_disable_preview
             // 
             this.chk_box_disable_preview.AutoSize = true;
-            this.chk_box_disable_preview.Location = new System.Drawing.Point(6, 266);
+            this.chk_box_disable_preview.Location = new System.Drawing.Point(6, 254);
             this.chk_box_disable_preview.Name = "chk_box_disable_preview";
             this.chk_box_disable_preview.Size = new System.Drawing.Size(102, 17);
             this.chk_box_disable_preview.TabIndex = 23;
             this.chk_box_disable_preview.Text = "Disable Preview";
             this.chk_box_disable_preview.UseVisualStyleBackColor = true;
+            this.chk_box_disable_preview.CheckedChanged += new System.EventHandler(this.Chk_box_disable_preview_CheckedChanged);
             this.chk_box_disable_preview.Click += new System.EventHandler(this.chk_box_disable_preview_Click);
             // 
             // checkbox_disable_docking
             // 
             this.checkbox_disable_docking.AutoSize = true;
-            this.checkbox_disable_docking.Location = new System.Drawing.Point(6, 243);
+            this.checkbox_disable_docking.Location = new System.Drawing.Point(6, 231);
             this.checkbox_disable_docking.Name = "checkbox_disable_docking";
             this.checkbox_disable_docking.Size = new System.Drawing.Size(145, 17);
             this.checkbox_disable_docking.TabIndex = 22;
@@ -427,7 +451,7 @@
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(402, 622);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About";
@@ -463,15 +487,15 @@
             this.label1.Location = new System.Drawing.Point(27, 183);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.Size = new System.Drawing.Size(120, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Libraries Used:";
+            this.label1.Text = "Links for Libraries Used:";
             // 
             // link_about_website
             // 
             this.link_about_website.AutoSize = true;
             this.link_about_website.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.link_about_website.Location = new System.Drawing.Point(113, 103);
+            this.link_about_website.Location = new System.Drawing.Point(118, 103);
             this.link_about_website.Name = "link_about_website";
             this.link_about_website.Size = new System.Drawing.Size(167, 16);
             this.link_about_website.TabIndex = 2;
@@ -483,7 +507,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(43, 57);
+            this.label6.Location = new System.Drawing.Point(43, 55);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 1;
@@ -494,11 +518,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(24, 12);
+            this.label5.Location = new System.Drawing.Point(17, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(369, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "The Comic Book Wizard v0.4.3";
+            this.label5.Text = "The Comic Book Wizard v0.4.4";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Form1
@@ -507,14 +531,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(410, 650);
+            this.ClientSize = new System.Drawing.Size(420, 650);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(430, 560);
             this.Name = "Form1";
-            this.Text = "The Comic Book Wizard *v0.4.3*";
+            this.Text = "The Comic Book Wizard";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.tabControl1.ResumeLayout(false);
@@ -572,6 +596,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.ProgressBar prgrs_bar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
     }
 }
 
