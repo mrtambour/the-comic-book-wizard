@@ -1,8 +1,13 @@
-The Comic Book Wizard
+The Comic Book Wizard - ARCHIVED
 =====================
-The comic book wizard allows you to compress a folder of images into two different archive formats, which are cbz and zip. It also has an archive manager in a separate tab that allows you to select a folder containing archives such as cbr, rar and zip and it can automatically convert all archives to into cbz archives and save them where you want. 
+<strong>This version of The Comic Book Wizard will no longer be updated and is now archived.</strong>
 
-<strong>Some Features:</strong>
+<strong>WARNING: This app was developed with NUnrar which does not support newer RAR algorithms such as RAR5.</strong>
+
+
+The comic book wizard allows you to compress a folder of images into two different archive formats, which are cbz and zip. It also has an archive manager in a separate tab that allows you to select a folder containing archives such as cbr, rar and zip and it can automatically convert all archives into cbz archives and save them where you want. 
+
+<strong>Features:</strong>
 - Preview each images that will be included in the archive.
 
 - Ability to manually remove specific images you want to leave out.
@@ -15,7 +20,7 @@ The comic book wizard allows you to compress a folder of images into two differe
 
 
 <strong>Requirements:</strong>
-* At Least Windows XP
+* Windows XP and newer
 * Net Framework 4.0
 * x86(32 bit) or 64 bit processor
 
